@@ -8,3 +8,9 @@ order by p.nombre
 select *
 from productos
 where stock<5
+
+-- Precio promedio por categoria 
+select c.nombre, avg(p.precio) as "Precio Promedio"
+from productos p
+inner join categorias c on p.categoria_id = c.id
+group by c.nombre
