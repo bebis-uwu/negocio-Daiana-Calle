@@ -3,3 +3,8 @@ select p.nombre as "Producto", c.nombre
 from productos p
 inner join categorias c on p.categoria_id = c.id 
 order by p.nombre 
+
+-- Productos con menos de 5 unidades en stock
+select *
+from productos
+where stock<5
