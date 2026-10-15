@@ -26,3 +26,10 @@ select p.id, sum(dp.cantidad*dp.precio_unitario) as "Total"
 from pedidos p
 inner join detalle_pedido dp on dp.pedido_id = p.id
 group by p.id
+
+-- Clientes con más de dos pedidos realizados
+select c.nombre, count(p.id) as "Cantidad de Pedidos"
+from clientes c
+inner join pedidos p on c.id = p.cliente_id
+group by c.id
+having count(p.id) > 2
