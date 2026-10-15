@@ -13,18 +13,12 @@ btnBuscar.addEventListener('click', async () => {
     resultado.innerHTML = 'Buscando...';
 
     try {
-        const respuesta = await fetch(
-            `https://pokeapi.co/api/v2/pokemon/${nombre}`
-        );
-
+        const respuesta = await fetch(`https://pokeapi.co/api/v2/pokemon/${nombre}`);
         if (!respuesta.ok) {
             throw new Error('Pokémon no encontrado');
         }
-
         const datos = await respuesta.json();
-
         mostrarPokemon(datos);
-
     } catch (error) {
         resultado.innerHTML = `<p>${error.message}</p>`;
     }
@@ -32,9 +26,9 @@ btnBuscar.addEventListener('click', async () => {
 
 function mostrarPokemon(datos) {
     const tipos = datos.types.map(t => t.type.name).join(', ');
-    resultado.innerHTML = `
-    let peso = datos.weight / 10;
+    let peso = (datos.weight/100)*0.1;
     let altura = datos.height / 10;
+    resultado.innerHTML = `
         <div class="tarjeta">
             <h2>${datos.name}</h2>
             <img src="${datos.sprites.front_default || ''}" alt="${datos.name}">
