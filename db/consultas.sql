@@ -20,3 +20,9 @@ select c.nombre as "Cliente", p.fecha, p.estado
 from pedidos p
 inner join clientes c on p.cliente_id = c.id
 where c.id = 1
+
+-- Total en dinero de cada pedido
+select p.id, sum(dp.cantidad*dp.precio_unitario) as "Total"
+from pedidos p
+inner join detalle_pedido dp on dp.pedido_id = p.id
+group by p.id
