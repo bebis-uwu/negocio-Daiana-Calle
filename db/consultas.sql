@@ -14,3 +14,9 @@ select c.nombre, avg(p.precio) as "Precio Promedio"
 from productos p
 inner join categorias c on p.categoria_id = c.id
 group by c.nombre
+
+-- Pedidos de un cliente con su fecha y estado
+select c.nombre as "Cliente", p.fecha, p.estado
+from pedidos p
+inner join clientes c on p.cliente_id = c.id
+where c.id = 1
