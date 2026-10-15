@@ -33,3 +33,11 @@ from clientes c
 inner join pedidos p on c.id = p.cliente_id
 group by c.id
 having count(p.id) > 2
+
+-- Eliminar un cliente sin pedidos asociados
+delete from clientes c
+where not exists (
+    select *
+    from pedidos p
+    where p.cliente_id = c.id
+)
